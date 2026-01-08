@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<!-- Regression test for issue 7194, referencing an unresolved CSS variable cause a crash -->
+<style>
+div {
+    transition: var(--foo);
+}
+</style>
+<script src="../include.js"></script>
+<script>
+    test(() => {
+        const declaration = document.styleSheets[0].cssRules[0].style;
+        println(declaration.getPropertyValue("transition"));
+    });
+</script>
